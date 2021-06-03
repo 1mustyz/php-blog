@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="fontawesome-free-5.12.0-web/fontawesome-free-5.12.0-web/css/all.css">
+</head>
+<style>
+ #Container{
+       display: grid;
+       grid-template-columns: repeat(1,1fr);
+       margin: 0 auto;
+       width: 480px;
+       margin-top: 100px;
+
+
+    }
+    body{
+        /* background-color: #ddd; */
+    }
+input{
+        border: none;
+        /* padding: 5px;
+        margin: 5px; */
+        outline: unset;
+        /* width: 80%; */
+        font-size: 18px;
+        /* color: blue; */
+        font-style: italic;
+    }
+    .input-container{
+        border: 1px solid #ddd;
+    
+    }
+    input[type='file']{
+      border-radius: 34px;
+      padding-left: 3px;
+      padding-bottom: 3px;
+      /* background-color: green; */
+    }
+    input[type='button']{
+        padding: 5px;
+        margin: 2px;
+        border-radius: 8px;
+        background-color: white;
+        color: blue;
+        border: none;
+        border: 1px solid blue;
+        font-weight: bolder;
+        /* float: right; */
+        width: 45%;
+        }
+    .icons{
+        padding: 5px;
+        margin: 0, 0, 3px, 3px;
+        font-size: 25px;
+        border-right: 1px solid #ddd;
+        color: rgb(73, 71, 71);
+        /* background-color: rgb(148, 144, 144); */
+    }
+    .icons-camera{
+        padding: 3px;
+        margin: 0, 0, 3px, 3px;
+        font-size: 25px;
+        border-right: 1px solid #ddd;
+    }
+    form{
+        border: 1px solid #ddd;
+        padding: 30px;
+        background-color: white;
+    }
+    h3{
+        text-align: center;
+        font-size: 30px;
+        font-weight: bolder;
+    }
+    .up-pic{
+        font-size: 20px;
+        font-style: italic;
+        color: rgb(85, 85, 85);
+        padding-left: 2px;
+
+    }
+    /* .lgn-ref{
+        margin-top: 100px;
+        padding-top:25px ;
+    } */
+</style>
+<body>
+    <div id="Container">
+        <form class="myForm" enctype="multipart/form-data">
+            <h3>Create Account</h3>
+            <p class="msg"></p>
+            <div class="input-container"><span class="fa fa-user icons"></span><input type="text" placeholder="Enter your name" name="first_name"></div><br>
+            <div class="input-container"><span class="fa fa-user icons"></span><input type="text" placeholder="Enter your name" name="last_name"></div><br>
+            <div class="input-container"><span class="fa fa-envelope icons"></span><input type="text" placeholder="someone@example.com" name="email"></div><br>
+            <div class="input-container"><span class="fa fa-phone icons"></span><input type="text" placeholder="Phone number" name="phone"></div><br>
+            <div class="input-container"><span class="fa fa-map icons"></span><input type="text" placeholder="Enter Address here.." name="address"></div><br>
+            <!-- <div class="input-container"><span class="fa fa-camera icons-camera"></span><span class="up-pic">upload profile picture</span><input type="file" placeholder="photo" name="image"></div><br> -->
+            <div class="input-container"><span class="fa fa-lock icons"></span><input type="password" placeholder="Enter Password" name="password"</div><br>
+            <div class="input-container"><span class="fa fa-lock icons"></span><input type="password" placeholder="Re-type Password" name="confirm_password"></div><br>
+            <p class="msg"></p>
+            <center><button type="submit" class="submit">submit</button></center><br>
+
+            <center><span class="lgn-ref">Already have an account <a href="login.html">Login here..</a></span></center>
+        </form>
+      
+    </div>
+    <script src="javaScripts/registration.js"></script>
+</body>
+</html>

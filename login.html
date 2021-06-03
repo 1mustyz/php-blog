@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <!-- <link rel="stylesheet" type="text/css" href="profile.css"> -->
+    <link rel="stylesheet" type="text/css" href="fontawesome-free-5.12.0-web/fontawesome-free-5.12.0-web/css/all.css">
+</head>
+<style>
+    body{
+        /* background-color: #ddd; */
+    }
+    #container{
+        display: grid;
+        margin: 0 auto;
+        align-content: center;
+        grid-template-columns: repeat(1, 1fr);
+        background-color: white;
+        width: 460px;
+        /* padding: 100px; */
+        margin-top: 200px;
+
+    }
+    input{
+        border: none;
+        /* padding: 5px;
+        margin: 5px; */
+        outline: unset;
+        width: 80%;
+        font-size: 22px;
+        color: blue;
+    }
+    .input-container{
+        border: 1px solid #ddd;
+    
+    }
+
+    .msg-red {
+        color: red;
+    }
+
+    .msg-green {
+        color: green;
+    }
+
+    .icons{
+        padding: 10px;
+        margin: 0, 0, 3px, 3px;
+        font-size: 29px;
+        border-right: 1px solid #ddd;
+        color: rgb(73, 71, 71);
+        /* background-color: rgb(148, 144, 144); */
+    }
+    input[type='button']{
+        background-color: white;
+        color: blue;
+        border-radius: 8px;
+        border: 1px solid blue;
+        padding: 3px;
+        /* float: right; */
+        padding-bottom: 6px;
+        width: 40%;
+    }
+    form{
+        padding: 30px;
+        border: 1px solid #ddd;
+    }
+    img{
+        padding-bottom: 10px;
+    }
+    .forget-pswd{
+        color: blue;
+        padding: 20px;
+        margin-top: 27px;
+    }
+    .create-account{
+        color: blue;
+        float: right;
+        padding: 10px;
+    }
+    h3{
+        text-align: center;
+        font-size: 30px;
+        font-weight: bolder;
+    }
+    
+    
+</style>
+<body>
+    <div id="container">
+        <form class="myForm">
+            <h3>Login Page</h3>
+            <p class="msg-red"></p>
+            <p class="msg-green"></p>
+            <!-- <img src="FAIZTECH.png" width="100%"> -->
+            <div class="input-container"><pan class="fa fa-envelope icons"></pan><input type="text" placeholder="Email" name="email"></div><br>
+            <div class="input-container"><pan class="fa fa-lock icons"></pan><input type="password" placeholder="Password" name="password"></div><br>
+            <center><button type="submit" class="submit">Login</button></center><br>
+            <center><span class="lgn-ref">Dont have an account ? <a href="register.html">create here..</a></span></center>
+            <!-- <span class="forget-pswd">forgot Password </span> -->
+            <!-- <span class="create-account">Create an account </span> -->
+
+        </form>
+    </div>
+
+    <script src="javaScripts/login.js"></script>
+</body>
+</html>
