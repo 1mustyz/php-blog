@@ -11,17 +11,21 @@ class Control extends Model{
         return Model::loginUser($email,$password);
     }
 
-    public function getSingleUser($userId){
+    public function getSingleUser($userId =0){
         return Model::getSingleUser($userId);
     }
 
     public function uploadPhoto($userId, $photo){
         return Model::uploadPhoto($userId, $photo);
     }
+
+    public function updateUser($firstName,$lastName,$email,$phone,$address,$userId){
+        return Model::updateUser($firstName,$lastName,$email,$phone,$address,$userId);
+    }
 }
 
 // $con = new Control();
-// var_dump($con->createUser('hadiza','yusuf','f@gmail.com','098373773','jambutu','mypic','1234'));
+// var_dump($con->getSingleUser());
 
 // var_dump($con->viewStock());
 ?>

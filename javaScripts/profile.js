@@ -4,7 +4,12 @@ const profileAddress = document.querySelector('.profile-address');
 const profileEmail = document.querySelector('.icon-envelope');
 const profilePhone = document.querySelector('.icon-phone');
 const profileImage = document.querySelector('.profile-img');
-const uploadForm = document.querySelector('.form-upload');
+const photo = document.querySelector('[name="image"]');
+const uploadBtn = document.querySelector('.upload-btn');
+const logoutButton = document.querySelector('.logout1');
+
+console.log(logoutButton);
+
 
 
 function inserDom(user) {
@@ -15,33 +20,59 @@ function inserDom(user) {
     profileImage.src = `includes/${user.photo}`;
 }
 
-fetch('includes/view-single-user.php',{
-       method: 'GET',
-      
-    }).then(function(response) {
-        return response.json();
-    }).then(function (text) {
-        console.log(text[0].photo);
-        inserDom(text[0]);
-    }).catch(function (error) {
-        console.log(error);
-    });
+function initialFetch(){
 
-    // uploadForm.addEventListener('submit',function (e) {
-    //     e.preventDefault();
+fetch('includes/view-single-user.php',{
+    method: 'GET',
+   
+ }).then(function(response) {
+     return response.json();
+ }).then(function (text) {
+     console.log(text);
+     inserDom(text[0]);
     
-    //     const formData = new FormData(this);
-    //     console.log(formData);
+ }).catch(function (error) {
+     console.log(error);
+ });
+
+}
+
+initialFetch();
+
+    uploadBtn.addEventListener('click',function (e) {
+        e.preventDefault();
+
+        console.log(photo.files);
     
-    //     fetch('./includes/upload-photo.inc.php',{
-    //        method: 'post',
-    //       body: formData  
-    //     }).then(function(response) {
-    //         return response.json();
-    //     }).then(function (file) {
-    //         // msgDom.textContent = text.msg;
-    //         console.log(file);
-    //     }).catch(function (error) {
-    //         console.log(error);
-    //     })
-    // });   
+        const formData = new FormData();
+        formData.append('image', photo.files[0])
+    
+        fetch('./includes/upload-photo.inc.php',{
+           method: 'post',
+          body: formData  
+        }).then(function(response) {
+            initialFetch();
+            return response.json();
+        }).then(function (file) {
+            console.log(file);
+        }).catch(function (error) {
+            console.log(error);
+        })
+    });   
+
+    logoutButton.addEventListener('click', (e)=>{
+        e.preventDefault();
+
+        // console.log('hello');
+        fetch('./includes/logout.inc.php',{
+            method: 'get',
+         }).then(function(response) {
+             return response.json();
+         }).then(function (text) {
+             console.log(text);
+             if(text.status == 1) window.location = 'login.html';
+         }).catch(function (error) {
+             console.log(error);
+         })
+       
+    });

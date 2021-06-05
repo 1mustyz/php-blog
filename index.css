@@ -1,0 +1,41 @@
+body {
+    background-image: url('index-image.jpeg');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.center {
+    background-color: white;
+    border-radius: 10px;
+    margin: auto;
+    margin-top: 7rem;
+    width: 30%;
+    height: 50vh;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+a {
+    text-decoration: none;
+    background-color: rgb(85, 85, 221);
+    border-radius: 5px;
+    color: white;
+    padding: 2rem;
+    width: 50%;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    font-size: 30px;
+}
+
+a:hover {
+    background-color: rgb(113, 113, 221);
+}
+
+.or {
+    width: 6%;
+    margin: auto;
+    font-size: 15px;
+}
