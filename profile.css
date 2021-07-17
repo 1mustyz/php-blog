@@ -104,7 +104,7 @@ input[type='button']{
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 
 }
-.gmail.{
+.gmail{
     margin: 50px;
     padding: 10px;
     font-size: 20px;
@@ -263,4 +263,37 @@ input[type='file']{
     padding: 4px;
     border-radius: 5px;
     color: red;
+}
+.tt{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 80%;
+    margin: auto;
+    margin-top: 5rem;
+
+}
+
+.all-post{
+    margin-left: 2rem;
+}
+
+.author {
+    color: yellowgreen;
+}
+
+.myForm{
+    display: flex;
+    height: 2rem;
+}
+
+.post-box {
+    padding: 1rem;
+    height: 2rem;
+    margin-right: 1rem;
+}
+.make-post {
+    border: none;
+    background-color: blue;
+    color: white;
 }

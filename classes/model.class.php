@@ -69,31 +69,20 @@
             $sql = "SELECT `first_name`,`last_name`,`email`,`phone`,`address`,`photo` FROM users WHERE id = '$userId'";
             $result =  $myConn->query($sql);
 
-          
-            if(($userId !== 0)){
-                if ($result->num_rows > 0) {
-                    while($row = $result->fetch_assoc()){
-                       $data[]=$row;
-                    }
-                    return $data;
-    
+            if ($result->num_rows > 0) {
+                while($row = $result->fetch_assoc()){
+                   $data[]=$row;
                 }
-                else{
-                    $data[] = array(
-                        'status'=>0,
-                        'msg' => 'no user yet'
-                    );
-                    return $data;
-                }
-            }else{
+                return $data;
+
+            }
+            else{
                 $data[] = array(
                     'status'=>0,
                     'msg' => 'no user yet'
                 );
                 return $data;
             }
-
-           
 
         }
 
@@ -117,84 +106,96 @@
 
         }
 
-
-        protected function updateUser($firstName,$lastName,$email,$phone,$address,$userId){
+        protected function createPost($userId,$post){
             $myConn = $this->conn();
             
-            $data;
-            $newFirstName;
-            $newLastName;
-            $newEmail;
-            $newPhone;
-            $newAddress;
+                $stmt =  $myConn->prepare("INSERT INTO posts (`userId`,`post`) VALUES (?,?);");
+                $stmt->bind_param("ss", $userId,$post);
+                $stmt->execute();
+                $allPost = $this->getPosts();
+                return array(
+                    'status'=>1,
+                     $allPost
+                );
+        }
 
-            $sql = "SELECT * FROM users WHERE id='$userId';";
-            $result = $myConn->query($sql);
-
-            if($result->num_rows > 0){
-
-                while($row = $result->fetch_assoc()){
-                    $data[]=$row;
-                 }
-                
-            }
-
-            if(empty($firstName)){
-                $newFirstName = $data[0]['first_name'];
-            }else{
-                $newFirstName = $firstName;
-            }
-
-            if(empty($lastName)){
-                $newLastName = $data[0]['last_name'];
-            }else{
-                $newLastName = $lastName;
-            }
-
-            if(empty($email)){
-                $newEmail = $data[0]['email'];
-            }else{
-                $newEmail = $email;
-            }
-
-            if(empty($phone)){
-                $newPhone = $data[0]['phone'];
-            }else{
-                $newPhone = $phone;
-            }
-
-            if(empty($address)){
-                $newAddress = $data[0]['address'];
-            }else{
-                $newAddress = $address;
-            }
-
+        protected function createComment($postId,$comment){
+            $myConn = $this->conn();
             
-            $sql = "UPDATE `users` SET first_name='$newFirstName',
-                                        last_name='$newLastName', 
-                                        email='$newEmail', phone='$newPhone', 
-                                        `address`='$newAddress' 
-                                        WHERE id='$userId'";
+                $stmt =  $myConn->prepare("INSERT INTO comments (`postId`,`comment`) VALUES (?,?);");
+                $stmt->bind_param("ss", $postId,$comment);
+                $stmt->execute();
+                return array(
+                    'status'=>1,
+                    'msg'=>'comment made successfull'
+                );
+        }
 
-            if ($myConn->query($sql) === TRUE) {
-            return array(
-                'status'=>1,
-                'msg' => 'update successful'
-            );
-            } else {
-            return array(
-                'status'=>0,
-                'msg' => 'updating error'
-            );
+       
+    
+
+        protected function getPosts(){
+            $myConn = $this->conn();
+
+            $data = array();
+
+            $sql = "SELECT `first_name`,`last_name`,`post` FROM (posts INNER JOIN users ON posts.userId=users.id)";
+
+            //         SELECT Orders.OrderID, Customers.CustomerName, Orders.OrderDate
+            // FROM Orders
+            // INNER JOIN Customers ON Orders.CustomerID=Customers.CustomerID;
+
+            $result =  $myConn->query($sql);
+
+            if ($result->num_rows > 0) {
+                while($row = $result->fetch_assoc()){
+                $data[]=$row;
+                }
+                return $data;
+
             }
-               
-             
+            else{
+                $data[] = array(
+                    'status'=>0,
+                    'msg' => 'no post yet'
+                );
+                return $data;
+            }
+
+        }
+
+
+
+        protected function getSinglePosts($userId){
+            $myConn = $this->conn();
+            $data = array();
+
+            $sql = "SELECT `post`,`postId`,`comment` FROM comments INNER JOIN posts ON comments.postId=posts.id WHERE posts.userId='$userId'";
+
+
+            $result =  $myConn->query($sql);
+
+            if ($result->num_rows > 0) {
+                while($row = $result->fetch_assoc()){
+                $data[]=$row;
+                }
+                return $data;
+
+            }
+            else{
+                $data[] = array(
+                    'status'=>0,
+                    'msg' => 'no comment yet'
+                );
+                return $data;
+            }
+
         }
        
     }
 
 //     $conn = new Model();
-//   var_dump($conn->updateUser('hadiza','','adiza@gmail.com','','bank road',6));
+//   var_dump($conn->getSinglePosts(1));
 // $conin = new Model();
 // $conin->addMedicine('olu','jos','emzor','pcs','100','400','5');
 

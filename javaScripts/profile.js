@@ -7,9 +7,27 @@ const profileImage = document.querySelector('.profile-img');
 const photo = document.querySelector('[name="image"]');
 const uploadBtn = document.querySelector('.upload-btn');
 const logoutButton = document.querySelector('.logout1');
+const myForm = document.querySelector('.myForm');
+const postBox = document.querySelector('.post-box')
+const allPost = document.querySelector('.all-post')
+var fragment = document.createDocumentFragment();
+
+
 
 console.log(logoutButton);
 
+
+fetch('includes/view-all-post.inc.php',{
+    method: 'GET',
+   
+ }).then(function(response) {
+     return response.json();
+ }).then(function (text) {
+     console.log(text);
+    
+ }).catch(function (error) {
+     console.log(error);
+ });
 
 
 function inserDom(user) {
@@ -75,4 +93,44 @@ initialFetch();
              console.log(error);
          })
        
+    });
+
+    myForm.addEventListener('submit',function (e) {
+        e.preventDefault();
+    
+        const formData = new FormData(this);
+    
+        fetch('./includes/addpost.inc.php',{
+           method: 'post',
+          body: formData  
+        }).then(function(response) {
+            return response.json();
+        }).then(function (text) {
+            console.log(text);
+            text[0].map((post,ind) => {
+
+                const content = document.createElement('p')
+                const userName = document.createElement('p')
+
+                content.textContent = post.post
+                content.classList.add('single-post')
+
+                userName.textContent = post.first_name
+                userName.classList.add('author')
+
+                fragment.appendChild(content)
+                fragment.appendChild(userName)
+                allPost.appendChild(fragment)
+
+                content.addEventListener('click', () => {
+                    console.log(ind + 1)
+                    localStorage.removeItem('postId')
+                    localStorage.setItem('postId', ind+1)
+                    // window.location.href = 'post-detail'
+                  })
+            })
+        })
+        .catch(function (error) {
+            console.log(error);
+        })
     });
